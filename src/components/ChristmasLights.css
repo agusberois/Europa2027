@@ -1,0 +1,48 @@
+.xmas-lights {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 6px;
+}
+
+.xmas-lights::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 5px;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.xmas-lights__bulb {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--bulb-color);
+  box-shadow: 0 0 6px 2px var(--bulb-color);
+  animation-name: xmas-twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes xmas-twinkle {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 8px 3px var(--bulb-color);
+  }
+  50% {
+    opacity: 0.4;
+    box-shadow: 0 0 2px 1px var(--bulb-color);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .xmas-lights__bulb {
+    animation: none;
+  }
+}

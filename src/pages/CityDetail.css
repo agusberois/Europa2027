@@ -1,0 +1,118 @@
+.city-detail {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.city-detail__back {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.city-detail__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-right: 64px;
+}
+
+.city-detail__weather {
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: right;
+  line-height: 1.2;
+}
+
+.city-detail__weather-current {
+  display: block;
+  font-size: 1.125rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.city-detail__weather-range {
+  display: block;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.city-detail__flag {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.city-detail__header h1 {
+  margin-bottom: 2px;
+}
+
+.city-detail__days {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.city-detail__day-label {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.city-detail__empty {
+  margin: 0;
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+.city-detail__activities {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.city-detail__activities li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 0.9375rem;
+}
+
+.city-detail__activity-time {
+  flex-shrink: 0;
+  min-width: 48px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.city-detail__activity-text {
+  flex: 1;
+}
+
+.city-detail__activity-icon {
+  flex-shrink: 0;
+  text-decoration: none;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.city-detail__activity-check {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+.city-detail__activities li.is-done .city-detail__activity-time,
+.city-detail__activities li.is-done .city-detail__activity-text {
+  text-decoration: line-through;
+  opacity: 0.55;
+}

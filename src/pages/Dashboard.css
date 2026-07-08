@@ -1,0 +1,35 @@
+.dashboard {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.dashboard__header h1 {
+  margin-bottom: 2px;
+}
+
+.dashboard__current h2 {
+  margin: var(--space-1) 0;
+}
+
+.dashboard__next h3 {
+  margin-bottom: var(--space-2);
+}
+
+.dashboard__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+}
+
+.dashboard__countdown,
+.dashboard__finished {
+  text-align: center;
+}
+
+.dashboard__countdown-transport {
+  margin-top: -6px;
+  font-size: 0.8125rem;
+}

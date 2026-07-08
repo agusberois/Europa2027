@@ -1,0 +1,28 @@
+.photo-gallery {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: var(--space-1);
+  margin: 0 calc(var(--space-4) * -1);
+  padding-inline: var(--space-4);
+}
+
+.photo-gallery__photo {
+  flex: 0 0 80%;
+  scroll-snap-align: center;
+  border-radius: var(--radius-lg);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  box-shadow: var(--shadow-sm);
+  background: var(--color-surface-alt);
+}
+
+.photo-gallery-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6) var(--space-4);
+  text-align: center;
+}

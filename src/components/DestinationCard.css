@@ -1,0 +1,19 @@
+.destination-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.destination-card__flag {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.destination-card__info h3 {
+  margin-bottom: 2px;
+}
+
+.destination-card__dates {
+  margin: 0;
+  font-size: 0.875rem;
+}

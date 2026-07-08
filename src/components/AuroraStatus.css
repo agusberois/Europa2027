@@ -1,0 +1,40 @@
+.aurora-status__title {
+  display: block;
+  font-size: 0.8125rem;
+  margin-bottom: var(--space-2);
+}
+
+.aurora-status__message {
+  margin: 0;
+}
+
+.aurora-status__value {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.aurora-status__kp {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.aurora-status__level--low {
+  color: var(--color-text-muted);
+  background: var(--color-surface-alt);
+}
+
+.aurora-status__level--good {
+  color: var(--color-success);
+  background: rgba(47, 158, 99, 0.12);
+}
+
+.aurora-status__level--high {
+  color: var(--color-accent);
+  background: var(--color-accent-bg);
+}
+
+.aurora-status__updated {
+  margin: var(--space-2) 0 0;
+  font-size: 0.75rem;
+}
