@@ -14,6 +14,11 @@
   margin: var(--space-1) 0;
 }
 
+.dashboard__current-sun {
+  margin-top: 2px;
+  font-size: 0.8125rem;
+}
+
 .dashboard__next h3 {
   margin-bottom: var(--space-2);
 }
@@ -32,4 +37,35 @@
 .dashboard__countdown-transport {
   margin-top: -6px;
   font-size: 0.8125rem;
+}
+
+.dashboard__tools-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.2s ease;
+}
+
+.dashboard__tools-link:hover,
+.dashboard__tools-link:focus-visible {
+  box-shadow: var(--shadow-md);
+}
+
+.dashboard__tools-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.dashboard__tools-label {
+  flex: 1;
+  font-weight: 600;
+}
+
+.dashboard__tools-arrow {
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--color-text-muted);
 }

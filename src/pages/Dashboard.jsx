@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { itinerary } from '../data/itinerary'
 import {
   getTripStatus,
@@ -11,6 +12,7 @@ import StatTile from '../components/StatTile.jsx'
 import Timeline from '../components/Timeline.jsx'
 import Snowfall from '../components/Snowfall.jsx'
 import ChristmasLights from '../components/ChristmasLights.jsx'
+import { useWeather } from '../hooks/useWeather'
 import './Dashboard.css'
 
 function Dashboard() {
@@ -20,6 +22,8 @@ function Dashboard() {
   const firstStop = itinerary[0]
   const lastStop = itinerary[itinerary.length - 1]
   const firstDestination = itinerary.find((stop) => !stop.isHome)
+  const { data: weather } = useWeather()
+  const currentWeather = status.current && weather?.[status.current.city]
 
   return (
     <div className="container dashboard">
@@ -61,6 +65,11 @@ function Dashboard() {
                 {status.current.nights > 0 &&
                   ` · Noche ${getNightNumber(status.current)} de ${status.current.nights}`}
               </p>
+              {currentWeather && (
+                <p className="text-muted dashboard__current-sun">
+                  🌅 {currentWeather.sunrise} · 🌇 {currentWeather.sunset}
+                </p>
+              )}
             </section>
           )}
 
@@ -87,6 +96,14 @@ function Dashboard() {
           </p>
         </section>
       )}
+
+      <Link to="/herramientas" className="card dashboard__tools-link">
+        <span className="dashboard__tools-icon">🧰</span>
+        <span className="dashboard__tools-label">Herramientas</span>
+        <span className="dashboard__tools-arrow" aria-hidden="true">
+          ›
+        </span>
+      </Link>
 
       <section className="dashboard__timeline">
         <h2>Itinerario completo</h2>

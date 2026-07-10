@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { formatShortDate } from '../utils/trip'
-import { useWeather } from '../hooks/useWeather'
+import { useWeather, weatherIcon } from '../hooks/useWeather'
 import Spinner from './Spinner.jsx'
 import './Timeline.css'
 
@@ -51,7 +51,8 @@ function Timeline({ items }) {
                     ) : (
                       cityWeather && (
                         <p className="text-muted timeline__weather">
-                          🌡️ {cityWeather.current}° ({cityWeather.min}°/{cityWeather.max}°)
+                          {weatherIcon(cityWeather.code)} {cityWeather.current}° (
+                          {cityWeather.min}°/{cityWeather.max}°)
                         </p>
                       )
                     )}

@@ -69,6 +69,9 @@ function CityDetail() {
               <span className="text-muted city-detail__weather-range">
                 {cityWeather.min}°/{cityWeather.max}°
               </span>
+              <span className="text-muted city-detail__weather-sun">
+                🌅 {cityWeather.sunrise} · 🌇 {cityWeather.sunset}
+              </span>
             </div>
           )
         )}

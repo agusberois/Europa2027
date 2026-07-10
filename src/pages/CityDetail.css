@@ -41,6 +41,13 @@
   white-space: nowrap;
 }
 
+.city-detail__weather-sun {
+  display: block;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
 .city-detail__flag {
   font-size: 2.5rem;
   line-height: 1;
