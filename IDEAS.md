@@ -34,9 +34,9 @@ Usar `coordinates.js` con Leaflet (u otra lib) para ver la ruta completa y la ci
 Especialmente relevante en Rovaniemi en enero, con pocas horas de luz.
 **Notas:** Implementado usando `sunrise`/`sunset` de Open-Meteo (ya se pedía `daily=...` en `useWeather`). Se muestra en `CityDetail` (header, junto al clima) y en el Dashboard (card "Estás en" durante el viaje).
 
-### 💡 Pronóstico de aurora boreal a futuro
+### ✅ Pronóstico de aurora boreal a futuro
 Hoy solo se muestra el Kp actual; agregar predicción de próximas noches.
-**Notas:**
+**Notas:** Implementado con `noaa-planetary-k-index-forecast.json` (en vez del endpoint de solo el índice actual). Da hoy + los días futuros que la API alcance a pronosticar (normalmente 2 días completos y un tercero parcial); se agregó un `<select>` en `AuroraStatus` para elegir el día, mostrando el Kp máximo de ese día y si es dato observado/estimado o pronóstico.
 
 ### 💡 Info de vuelos/trenes con horario
 Número de vuelo/tren, horario, countdown a la próxima salida.
@@ -46,9 +46,13 @@ Número de vuelo/tren, horario, countdown a la próxima salida.
 Instalar en el celular y que funcione sin conexión (útil viajando fuera del país).
 **Notas:**
 
-### 💡 Frases básicas / mini traductor
+### ✅ Qué ponerte hoy (recomendador de abrigo)
+Traducir la temperatura de cada ciudad en una recomendación de ropa concreta, dado el rango de +25°C (Montevideo) a -20°C (Rovaniemi) del viaje.
+**Notas:** Implementado reutilizando `useWeather` (sin API nueva). Bandas de temperatura con consejo de abrigo (`data/clothingAdvice.js`) + aviso de lluvia/nieve según el `weather_code`. Muestra todas las ciudades del itinerario a la vez. Vive en `/herramientas/abrigo`.
+
+### ✅ Frases básicas / mini traductor
 Frases útiles por idioma (húngaro y finlandés no son triviales).
-**Notas:**
+**Notas:** Implementado como lista estática (15 frases por idioma: saludos, cortesía, sí/no, "no entiendo", "¿hablás inglés?", precio, baño, cuenta, brindis, adiós) para alemán (Austria), húngaro, checo y finés — se excluyó español porque ya lo hablamos. Selector por pestañas con bandera. Cada frase muestra cómo se escribe y una pronunciación aproximada (transcripta con ortografía del español, marcada como "aproximada" ya que no es fonética IPA). Vive en `/herramientas/frases`, accesible desde Herramientas.
 
 ### ✅ Conversor de moneda en vivo
 EUR ↔ UYU (y otras monedas locales si aplica) con tasa actualizada.
@@ -65,6 +69,14 @@ Generar .ics o integración con Google Calendar para las fechas/ciudades.
 ### 💡 Notificaciones/recordatorios
 Aviso del próximo transporte o actividad del día (browser notifications).
 **Notas:**
+
+### ✅ Reloj mundial
+Hora actual de cada ciudad del itinerario comparada con Montevideo.
+**Notas:** Implementado con `Intl.DateTimeFormat` y zonas horarias IANA (`data/timezones.js`), sin API externa. Actualiza cada segundo y marca "ayer/mañana" cuando el día calendario difiere del de Montevideo. Vive en `/herramientas/reloj`.
+
+### ✅ Calculadora de propinas
+Cuánto dejar de propina según el país, con costumbres que varían mucho en el itinerario.
+**Notas:** Implementado con guía de costumbres por país (`data/tipping.js`: España, Hungría, Austria, Chequia, Finlandia) con % sugerido que se autocompleta al elegir país, y cálculo de propina/total/por persona. Vive en `/herramientas/propinas`.
 
 ---
 

@@ -1,0 +1,17 @@
+.clothing-advisor-page {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.clothing-advisor-page__back {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.clothing-advisor-page h1 {
+  margin-bottom: 0;
+}

@@ -1,7 +1,21 @@
-.aurora-status__title {
-  display: block;
-  font-size: 0.8125rem;
+.aurora-status__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
   margin-bottom: var(--space-2);
+}
+
+.aurora-status__title {
+  font-size: 0.8125rem;
+}
+
+.aurora-status__select {
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-alt);
+  font-size: 0.8125rem;
 }
 
 .aurora-status__message {

@@ -1,0 +1,71 @@
+.clothing-advisor {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.clothing-advisor__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.clothing-advisor__city {
+  font-weight: 600;
+}
+
+.clothing-advisor__temp {
+  font-weight: 700;
+}
+
+.clothing-advisor__range {
+  margin: 0 0 var(--space-2);
+  font-size: 0.8125rem;
+}
+
+.clothing-advisor__band {
+  margin-bottom: var(--space-2);
+}
+
+.clothing-advisor__band--extreme,
+.clothing-advisor__band--very-cold {
+  color: var(--color-primary-strong);
+  background: var(--color-primary-bg);
+}
+
+.clothing-advisor__band--cold,
+.clothing-advisor__band--cool {
+  color: var(--color-primary);
+  background: var(--color-primary-bg);
+}
+
+.clothing-advisor__band--mild,
+.clothing-advisor__band--pleasant {
+  color: var(--color-success);
+  background: rgba(47, 158, 99, 0.12);
+}
+
+.clothing-advisor__band--hot {
+  color: var(--color-accent);
+  background: var(--color-accent-bg);
+}
+
+.clothing-advisor__advice {
+  margin: 0 0 var(--space-1);
+  font-size: 0.9375rem;
+}
+
+.clothing-advisor__precip {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.clothing-advisor__status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}

@@ -6,6 +6,10 @@ import './Tools.css'
 const tools = [
   { path: '/herramientas/conversor', icon: '💱', label: 'Conversor de moneda' },
   { path: '/herramientas/mapa', icon: '🗺️', label: 'Mapa de la ruta' },
+  { path: '/herramientas/frases', icon: '💬', label: 'Frases básicas' },
+  { path: '/herramientas/reloj', icon: '🕒', label: 'Reloj mundial' },
+  { path: '/herramientas/propinas', icon: '🧮', label: 'Calculadora de propinas' },
+  { path: '/herramientas/abrigo', icon: '🧥', label: 'Qué ponerte hoy' },
 ]
 
 function Tools() {

@@ -1,0 +1,33 @@
+.world-clock__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.world-clock__list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-3);
+  font-size: 0.9375rem;
+  padding-block: var(--space-1);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.world-clock__list li:last-child {
+  border-bottom: none;
+}
+
+.world-clock__time {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.world-clock__day-diff {
+  font-weight: 400;
+  font-size: 0.75rem;
+}

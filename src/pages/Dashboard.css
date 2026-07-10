@@ -19,6 +19,19 @@
   font-size: 0.8125rem;
 }
 
+.dashboard__current-activity {
+  margin: var(--space-2) 0 0;
+  font-weight: 600;
+}
+
+.dashboard__current-link {
+  display: inline-block;
+  margin-top: var(--space-1);
+  font-size: 0.8125rem;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
 .dashboard__next h3 {
   margin-bottom: var(--space-2);
 }

@@ -1,0 +1,60 @@
+.phrase-book__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.phrase-book__tab {
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  cursor: pointer;
+}
+
+.phrase-book__tab.is-active {
+  background: var(--color-primary-bg);
+  border-color: var(--color-primary);
+  color: var(--color-primary-strong);
+  font-weight: 600;
+}
+
+.phrase-book__hint {
+  margin-bottom: var(--space-2);
+}
+
+.phrase-book__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.phrase-book__list li {
+  display: flex;
+  flex-direction: column;
+  padding-block: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.phrase-book__list li:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.phrase-book__es {
+  font-size: 0.8125rem;
+}
+
+.phrase-book__local {
+  font-weight: 600;
+  font-size: 1.0625rem;
+}
+
+.phrase-book__pron {
+  font-size: 0.8125rem;
+  font-style: italic;
+}

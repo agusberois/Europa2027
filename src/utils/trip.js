@@ -22,6 +22,17 @@ export function formatShortDate(dateStr) {
 
 export const TOTAL_DAYS = daysBetween(TRIP_START, TRIP_END) + 1
 
+// Arrancamos a organizar el viaje el 1 de febrero; esto mide cuánto de esa
+// espera ya pasó, en porcentaje, hasta el día que arranca el viaje.
+export const PLANNING_START = '2026-02-01'
+
+export function getPlanningProgress(today = toISODate(new Date())) {
+  const totalDays = daysBetween(PLANNING_START, TRIP_START)
+  const elapsedDays = Math.min(totalDays, Math.max(0, daysBetween(PLANNING_START, today)))
+  const percent = totalDays > 0 ? Math.round((elapsedDays / totalDays) * 100) : 100
+  return { percent, elapsedDays, totalDays }
+}
+
 export function getCurrentStop(today = toISODate(new Date())) {
   if (today < TRIP_START || today > TRIP_END) return null
   return itinerary.reduce(
