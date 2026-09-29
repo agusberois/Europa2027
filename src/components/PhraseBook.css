@@ -6,11 +6,27 @@
 }
 
 .phrase-book__tab {
-  padding: var(--space-1) var(--space-3);
-  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  border-radius: 999px;
   border: 1px solid var(--color-border);
   background: var(--color-surface);
-  cursor: pointer;
+  font-weight: 500;
+  transition:
+    transform 0.2s var(--ease-bounce),
+    background 0.2s ease;
+}
+
+.phrase-book__tab:active {
+  transform: scale(0.94);
+}
+
+.phrase-book__tab-flag {
+  display: inline-block;
+  transition: transform 0.3s var(--ease-bounce);
+}
+
+.phrase-book__tab.is-active .phrase-book__tab-flag {
+  transform: scale(1.25) rotate(-8deg);
 }
 
 .phrase-book__tab.is-active {
@@ -27,7 +43,7 @@
 .phrase-book__list {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: var(--space-4);
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
@@ -35,9 +51,52 @@
 
 .phrase-book__list li {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
   padding-block: var(--space-2);
   border-bottom: 1px solid var(--color-border);
+  animation: rise-in 0.3s var(--ease-out) both;
+  animation-delay: calc(var(--i) * 25ms);
+}
+
+.phrase-book__list li:first-child {
+  padding-top: 0;
+}
+
+.phrase-book__text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.phrase-book__speak {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-primary-bg);
+  font-size: 1.125rem;
+  line-height: 1;
+  transition: transform 0.2s var(--ease-bounce);
+}
+
+.phrase-book__speak:active {
+  transform: scale(0.9);
+}
+
+.phrase-book__speak.is-speaking {
+  animation: speak-pulse 0.6s ease-in-out 2;
+}
+
+@keyframes speak-pulse {
+  50% {
+    transform: scale(1.18);
+    box-shadow: 0 0 0 6px var(--color-primary-bg);
+  }
 }
 
 .phrase-book__list li:last-child {
@@ -50,8 +109,9 @@
 }
 
 .phrase-book__local {
+  font-family: var(--font-display);
   font-weight: 600;
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
 }
 
 .phrase-book__pron {

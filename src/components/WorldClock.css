@@ -21,6 +21,18 @@
   border-bottom: none;
 }
 
+.world-clock__list li.is-home {
+  font-weight: 600;
+}
+
+.world-clock__city {
+  flex: 1;
+}
+
+.world-clock__daynight {
+  font-size: 0.875rem;
+}
+
 .world-clock__time {
   font-weight: 600;
   font-variant-numeric: tabular-nums;

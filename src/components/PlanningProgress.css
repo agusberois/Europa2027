@@ -1,27 +1,45 @@
 .planning-progress {
-  margin-top: var(--space-3);
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px dashed var(--color-border);
 }
 
-.planning-progress__track {
-  width: 100%;
-  height: 8px;
-  border-radius: 999px;
-  background: var(--color-surface-alt);
-  overflow: hidden;
+.planning-progress__title {
+  margin: 0 0 var(--space-3);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
 }
 
-.planning-progress__fill {
-  height: 100%;
-  border-radius: 999px;
-  background: var(--color-primary);
-  transition: width 0.3s ease;
+/* El avión va fuera de la barra (que tiene overflow: hidden) para que no
+   se corte al asomarse por arriba. */
+.planning-progress__runway {
+  position: relative;
+}
+
+.planning-progress__plane {
+  position: absolute;
+  top: 50%;
+  font-size: 1.25rem;
+  line-height: 1;
+  transform: translate(-50%, -55%);
+  filter: drop-shadow(0 2px 3px rgba(var(--shadow-color), 0.3));
+  animation: plane-float 2.4s ease-in-out infinite;
+}
+
+@keyframes plane-float {
+  50% {
+    transform: translate(-50%, -75%) rotate(-6deg);
+  }
 }
 
 .planning-progress__labels {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: var(--space-1);
+  margin-top: var(--space-2);
   font-size: 0.75rem;
 }
 

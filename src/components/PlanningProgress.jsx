@@ -5,8 +5,21 @@ function PlanningProgress({ percent, startLabel, endLabel, elapsedDays, totalDay
 
   return (
     <div className="planning-progress">
-      <div className="planning-progress__track">
-        <div className="planning-progress__fill" style={{ width: `${percent}%` }} />
+      <p className="planning-progress__title">Organizando el viaje</p>
+      <div className="planning-progress__runway">
+        <div
+          className="progress"
+          role="progressbar"
+          aria-valuenow={percent}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label="Avance de la organización del viaje"
+        >
+          <div className="progress__fill" style={{ width: `${percent}%` }} />
+        </div>
+        <span className="planning-progress__plane" style={{ left: `${percent}%` }} aria-hidden="true">
+          ✈️
+        </span>
       </div>
       <div className="planning-progress__labels">
         <span className="text-muted">{startLabel}</span>

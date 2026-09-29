@@ -1,4 +1,5 @@
 import { itinerary, TRIP_START, TRIP_END } from '../data/itinerary'
+import { cityCoordinates } from '../data/coordinates'
 
 function daysBetween(a, b) {
   const msPerDay = 1000 * 60 * 60 * 24
@@ -19,6 +20,10 @@ export function formatShortDate(dateStr) {
     timeZone: 'UTC',
   })
 }
+
+// Hora exacta del despegue desde Carrasco (ver activities.montevideo), para
+// la cuenta regresiva en vivo.
+export const DEPARTURE_TIME = new Date(`${TRIP_START}T18:40:00-03:00`)
 
 export const TOTAL_DAYS = daysBetween(TRIP_START, TRIP_END) + 1
 
@@ -126,4 +131,32 @@ export function getStopDays(stop) {
     dayNumber: dayStart + i,
     date: addDaysISO(stop.startDate, i),
   }))
+}
+
+const EARTH_RADIUS_KM = 6371
+export const EARTH_CIRCUMFERENCE_KM = 40075
+
+function haversineKm(a, b) {
+  const toRad = (deg) => (deg * Math.PI) / 180
+  const dLat = toRad(b.lat - a.lat)
+  const dLon = toRad(b.lon - a.lon)
+  const h =
+    Math.sin(dLat / 2) ** 2 + Math.cos(toRad(a.lat)) * Math.cos(toRad(b.lat)) * Math.sin(dLon / 2) ** 2
+  return 2 * EARTH_RADIUS_KM * Math.asin(Math.sqrt(h))
+}
+
+// Distancia en línea recta entre paradas consecutivas (sin contar escalas),
+// así que es un piso: en la práctica se recorre algo más.
+export function getTripDistanceKm() {
+  let total = 0
+  for (let i = 1; i < itinerary.length; i++) {
+    const from = cityCoordinates[itinerary[i - 1].city]
+    const to = cityCoordinates[itinerary[i].city]
+    if (from && to) total += haversineKm(from, to)
+  }
+  return Math.round(total)
+}
+
+export function formatNumber(value) {
+  return value.toLocaleString('es-UY')
 }

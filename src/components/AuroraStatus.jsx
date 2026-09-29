@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useAuroraStatus } from '../hooks/useAuroraStatus'
 import './AuroraStatus.css'
 
+const KP_MAX = 9
+
 function dayLabel(dateStr, index) {
   if (index === 0) return 'Hoy'
   if (index === 1) return 'Mañana'
@@ -51,6 +53,18 @@ function AuroraStatus() {
             <span className={`badge aurora-status__level aurora-status__level--${active.level}`}>
               {active.label}
             </span>
+          </div>
+          <div className="aurora-status__meter" aria-hidden="true">
+            <div
+              className="aurora-status__meter-rest"
+              style={{ width: `${100 - Math.min(100, (active.kp / KP_MAX) * 100)}%` }}
+            />
+          </div>
+          <div className="aurora-status__scale" aria-hidden="true">
+            <span>0</span>
+            <span>3 · se ve</span>
+            <span>5 · ¡show!</span>
+            <span>9</span>
           </div>
           <p className="text-muted aurora-status__updated">
             {active.isForecast ? 'Pronóstico NOAA' : 'Dato observado/estimado'}

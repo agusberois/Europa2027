@@ -36,6 +36,13 @@ function dayKey(date, timeZone) {
   }).format(date)
 }
 
+function isDaytime(date, timeZone) {
+  const hour = Number(
+    new Intl.DateTimeFormat('en-GB', { timeZone, hour: 'numeric', hour12: false }).format(date),
+  )
+  return hour >= 7 && hour < 20
+}
+
 function dayDiffLabel(date, timeZone) {
   const cityDay = dayKey(date, timeZone)
   const homeDay = dayKey(date, HOME_TIMEZONE)
@@ -60,9 +67,13 @@ function WorldClock() {
           const dayDiff = dayDiffLabel(now, timeZone)
 
           return (
-            <li key={stop.city}>
+            <li key={stop.city} className={stop.isHome ? 'is-home' : undefined}>
               <span className="world-clock__city">
                 {stop.flag} {stop.city}
+                {stop.isHome && <span className="text-muted world-clock__home"> 🏠</span>}
+              </span>
+              <span className="world-clock__daynight" aria-hidden="true">
+                {isDaytime(now, timeZone) ? '☀️' : '🌙'}
               </span>
               <span className="world-clock__time">
                 {formatTime(now, timeZone)}

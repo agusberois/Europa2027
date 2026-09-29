@@ -1,10 +1,12 @@
 // Frases básicas para los países del itinerario donde no se habla español
 // (España y Barcelona quedan afuera porque ya hablamos el idioma).
 // "pron" es una pronunciación aproximada, escrita con la ortografía del
-// español, para leer en voz alta sin conocer el idioma.
+// español, para leer en voz alta sin conocer el idioma. "speechLang" es la
+// voz que usa el navegador para pronunciarlas (speechSynthesis).
 export const phraseBooks = [
   {
     code: 'DE',
+    speechLang: 'de-AT',
     flag: '🇦🇹',
     language: 'Alemán',
     city: 'Salzburgo',
@@ -28,6 +30,7 @@ export const phraseBooks = [
   },
   {
     code: 'HU',
+    speechLang: 'hu-HU',
     flag: '🇭🇺',
     language: 'Húngaro',
     city: 'Budapest',
@@ -51,6 +54,7 @@ export const phraseBooks = [
   },
   {
     code: 'CZ',
+    speechLang: 'cs-CZ',
     flag: '🇨🇿',
     language: 'Checo',
     city: 'Praga',
@@ -74,6 +78,7 @@ export const phraseBooks = [
   },
   {
     code: 'FI',
+    speechLang: 'fi-FI',
     flag: '🇫🇮',
     language: 'Finés',
     city: 'Rovaniemi',

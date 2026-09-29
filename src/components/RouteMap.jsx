@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { itinerary } from '../data/itinerary'
 import { cityCoordinates } from '../data/coordinates'
-import { formatShortDate } from '../utils/trip'
+import { formatShortDate, getCurrentStop } from '../utils/trip'
 import './RouteMap.css'
 
 function buildPopupHtml(city, stops) {
@@ -13,7 +14,7 @@ function buildPopupHtml(city, stops) {
       (stop) =>
         `<div class="route-map__popup-visit">
           <span>${formatShortDate(stop.startDate)} – ${formatShortDate(stop.endDate)}</span>
-          <a href="/destino/${stop.slug}">Ver plan ›</a>
+          <a href="/destino/${stop.slug}" data-spa-link>Ver plan ›</a>
         </div>`,
     )
     .join('')
@@ -27,8 +28,27 @@ function buildPopupHtml(city, stops) {
 
 function RouteMap() {
   const containerRef = useRef(null)
+  const navigate = useNavigate()
+
+  // Los popups de Leaflet son HTML plano: interceptamos sus links para
+  // navegar dentro de la app en vez de recargar la página entera.
+  useEffect(() => {
+    const container = containerRef.current
+
+    function handleClick(event) {
+      const link = event.target.closest('a[data-spa-link]')
+      if (!link) return
+      event.preventDefault()
+      navigate(link.getAttribute('href'))
+    }
+
+    container.addEventListener('click', handleClick)
+    return () => container.removeEventListener('click', handleClick)
+  }, [navigate])
 
   useEffect(() => {
+    const currentCity = getCurrentStop()?.city
+
     const styles = getComputedStyle(document.documentElement)
     const routeColor = styles.getPropertyValue('--color-primary').trim() || '#2b6cb8'
 
@@ -56,8 +76,9 @@ function RouteMap() {
       const coord = cityCoordinates[city]
       if (!coord) return
 
+      const isCurrent = city === currentCity
       const icon = L.divIcon({
-        html: `<span class="route-map__marker">${stops[0].flag}</span>`,
+        html: `<span class="route-map__marker${isCurrent ? ' route-map__marker--current' : ''}">${stops[0].flag}</span>`,
         className: 'route-map__marker-wrapper',
         iconSize: [28, 28],
         iconAnchor: [14, 14],

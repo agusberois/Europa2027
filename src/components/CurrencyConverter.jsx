@@ -18,8 +18,6 @@ function CurrencyConverter() {
 
   return (
     <div className="card currency-converter">
-      <h3>Conversor de moneda</h3>
-
       <div className="currency-converter__input">
         <input
           type="text"

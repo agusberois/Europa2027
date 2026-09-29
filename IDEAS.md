@@ -102,9 +102,9 @@ Considerar bien el tema privacidad antes de avanzar.
 
 ## Gamificación / stats
 
-### 💡 Contador de distancia recorrida
+### ✅ Contador de distancia recorrida
 Km totales del itinerario, calculado desde `coordinates.js`.
-**Notas:**
+**Notas:** Implementado con haversine entre paradas consecutivas (`getTripDistanceKm` en `utils/trip.js`), en línea recta y sin contar escalas, así que es un piso (~29.000 km). Se muestra como stat en el Dashboard junto con el % de una vuelta al mundo.
 
 ### 💡 Bucket list vs. completado
 Marcar actividades "imprescindibles" y trackear cuántas se cumplieron.

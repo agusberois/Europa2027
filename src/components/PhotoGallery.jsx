@@ -3,8 +3,9 @@ import './PhotoGallery.css'
 function PhotoGallery({ photos }) {
   if (!photos.length) {
     return (
-      <div className="card photo-gallery-empty">
-        <span className="text-muted">📷 Todavía no hay fotos cargadas de este destino</span>
+      <div className="card empty-state">
+        <span className="empty-state__icon">📷</span>
+        <p className="text-muted">Acá van a ir las mejores fotos… ¡a sacar muchas!</p>
       </div>
     )
   }

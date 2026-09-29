@@ -30,8 +30,6 @@ function TipCalculator() {
 
   return (
     <div className="card tip-calculator">
-      <h3>Calculadora de propinas</h3>
-
       <div className="tip-calculator__section">
         <label className="tip-calculator__field">
           <span className="text-muted">País</span>

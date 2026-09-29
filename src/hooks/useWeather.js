@@ -4,6 +4,10 @@ import { cityCoordinates } from '../data/coordinates'
 const POLL_INTERVAL = 30 * 60 * 1000
 const cities = Object.keys(cityCoordinates)
 
+// Último dato bueno, compartido entre componentes y montajes: así al navegar
+// se muestra al instante (y se refresca en segundo plano).
+let cachedData = null
+
 function formatTime(isoString) {
   return isoString.slice(11, 16)
 }
@@ -51,7 +55,7 @@ function buildUrl() {
 }
 
 export function useWeather() {
-  const [state, setState] = useState({ loading: true, error: null, data: null })
+  const [state, setState] = useState(() => ({ loading: !cachedData, error: null, data: cachedData }))
 
   useEffect(() => {
     let cancelled = false
@@ -75,9 +79,10 @@ export function useWeather() {
           }
         })
 
+        cachedData = data
         setState({ loading: false, error: null, data })
       } catch {
-        if (!cancelled) setState({ loading: false, error: true, data: null })
+        if (!cancelled) setState({ loading: false, error: !cachedData, data: cachedData })
       }
     }
 

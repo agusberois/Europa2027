@@ -1,39 +1,28 @@
 import { Link } from 'react-router-dom'
-import Snowfall from '../components/Snowfall.jsx'
-import ChristmasLights from '../components/ChristmasLights.jsx'
+import { tools } from '../data/tools'
+import BackLink from '../components/BackLink.jsx'
 import './Tools.css'
-
-const tools = [
-  { path: '/herramientas/conversor', icon: '💱', label: 'Conversor de moneda' },
-  { path: '/herramientas/mapa', icon: '🗺️', label: 'Mapa de la ruta' },
-  { path: '/herramientas/frases', icon: '💬', label: 'Frases básicas' },
-  { path: '/herramientas/reloj', icon: '🕒', label: 'Reloj mundial' },
-  { path: '/herramientas/propinas', icon: '🧮', label: 'Calculadora de propinas' },
-  { path: '/herramientas/abrigo', icon: '🧥', label: 'Qué ponerte hoy' },
-]
 
 function Tools() {
   return (
-    <div className="container tools">
-      <Snowfall />
-      <ChristmasLights />
-      <Link to="/" className="tools__back">
-        ‹ Inicio
-      </Link>
+    <div className="container stack">
+      <BackLink to="/">Inicio</BackLink>
 
-      <header className="tools__header">
-        <h1>🧰 Herramientas</h1>
+      <header className="page-header">
+        <span className="page-header__icon">🧰</span>
+        <div>
+          <h1>Herramientas</h1>
+          <p className="text-muted">La navaja suiza del viajero</p>
+        </div>
       </header>
 
-      <ul className="tools__list">
-        {tools.map((tool) => (
-          <li key={tool.path}>
-            <Link to={tool.path} className="card tools__item">
-              <span className="tools__item-icon">{tool.icon}</span>
-              <span className="tools__item-label">{tool.label}</span>
-              <span className="tools__item-arrow" aria-hidden="true">
-                ›
-              </span>
+      <ul className="tools__grid">
+        {tools.map((tool, index) => (
+          <li key={tool.slug} style={{ '--i': index }}>
+            <Link to={`/herramientas/${tool.slug}`} className="card card-link tools__tile">
+              <span className="tools__tile-icon">{tool.icon}</span>
+              <span className="tools__tile-label">{tool.label}</span>
+              <span className="text-muted tools__tile-description">{tool.description}</span>
             </Link>
           </li>
         ))}

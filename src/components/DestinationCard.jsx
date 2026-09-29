@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom'
 import { formatShortDate } from '../utils/trip'
 import './DestinationCard.css'
 
-function DestinationCard({ stop }) {
-  return (
-    <div className="card destination-card">
+function DestinationCard({ stop, to }) {
+  const content = (
+    <>
       <div className="destination-card__flag">{stop.flag}</div>
       <div className="destination-card__info">
         <h3>{stop.city}</h3>
@@ -13,7 +14,18 @@ function DestinationCard({ stop }) {
           {stop.nights} {stop.nights === 1 ? 'noche' : 'noches'}
         </p>
       </div>
-    </div>
+    </>
+  )
+
+  if (!to) return <div className="card destination-card">{content}</div>
+
+  return (
+    <Link to={to} className="card card-link destination-card">
+      {content}
+      <span className="chevron" aria-hidden="true">
+        ›
+      </span>
+    </Link>
   )
 }
 
