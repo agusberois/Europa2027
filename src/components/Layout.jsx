@@ -53,8 +53,10 @@ function Layout() {
         <Outlet />
         {!isAlbum && <HiddenSticker city={city} />}
       </div>
-      {/* fuera de .page: su animación con transform rompería el position: fixed */}
-      <Mascot key={pathname} city={city} />
+      {/* fuera de .page: su animación con transform rompería el position: fixed.
+          La key tiene que ser distinta a la de .page (son hermanos): si se
+          repite, React no desmonta la página anterior y se apilan. */}
+      <Mascot key={`mascot:${pathname}`} city={city} />
     </>
   )
 }
