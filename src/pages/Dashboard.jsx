@@ -26,6 +26,11 @@ import Countdown from '../components/Countdown.jsx'
 import PlanningProgress from '../components/PlanningProgress.jsx'
 import { useWeather, weatherIcon } from '../hooks/useWeather'
 import { useCompletedTasks } from '../hooks/useCompletedTasks'
+import { useGame } from '../game/store'
+import { stickers } from '../game/stickers'
+import { achievements } from '../game/achievements'
+import { passportCities } from '../game/passport'
+import SurpriseCard from '../components/surprise/SurpriseCard.jsx'
 import './Dashboard.css'
 
 const TAGLINE_INTERVAL = 5000
@@ -53,6 +58,7 @@ function Dashboard() {
   const { isCompleted } = useCompletedTasks()
   const currentWeather = status.current && weather?.[status.current.city]
   const [tagline, setTagline] = useState(() => pickRandom(waitingTaglines))
+  const game = useGame()
 
   useEffect(() => {
     if (status.phase !== 'before') return undefined
@@ -263,6 +269,25 @@ function Dashboard() {
           <p className="dashboard__finished-note">¿Cuándo es el próximo? 👀</p>
         </section>
       )}
+
+      <SurpriseCard />
+
+      <Link to="/album" className="card card-link dashboard__tools-link">
+        <span className="dashboard__tools-icon dashboard__tools-icon--album" aria-hidden="true">
+          📒
+        </span>
+        <span className="dashboard__tools-label">
+          Mi álbum de viaje
+          <span className="text-muted dashboard__tools-hint">
+            {Object.keys(game.stickers).length}/{stickers.length} figuritas ·{' '}
+            {Object.keys(game.stamps).length}/{passportCities.length} sellos ·{' '}
+            {Object.keys(game.achievements).length}/{achievements.length} logros
+          </span>
+        </span>
+        <span className="chevron" aria-hidden="true">
+          ›
+        </span>
+      </Link>
 
       <Link to="/herramientas" className="card card-link dashboard__tools-link">
         <span className="dashboard__tools-icon" aria-hidden="true">

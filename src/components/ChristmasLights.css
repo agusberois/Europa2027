@@ -3,7 +3,16 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding-top: 6px;
+  width: 100%;
+  margin: 0;
+  padding: 6px 0 var(--space-2);
+  border: none;
+  background: none;
+}
+
+/* modo fiesta: todas titilan rapidísimo después de tocar la guirnalda */
+.xmas-lights.is-party .xmas-lights__bulb {
+  animation-duration: 0.25s !important;
 }
 
 .xmas-lights::before {

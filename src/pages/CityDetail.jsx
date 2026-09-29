@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { itinerary } from '../data/itinerary'
 import { activities } from '../data/activities'
@@ -8,7 +8,11 @@ import { formatShortDate, getStopDays, toISODate } from '../utils/trip'
 import { confetti } from '../utils/confetti'
 import { useCompletedTasks } from '../hooks/useCompletedTasks'
 import { useWeather, weatherIcon } from '../hooks/useWeather'
+import { useGame, getGame, stampPassport } from '../game/store'
+import { showToast } from '../game/toast'
 import BackLink from '../components/BackLink.jsx'
+import PassportStamp from '../components/game/PassportStamp.jsx'
+import SurpriseCard from '../components/surprise/SurpriseCard.jsx'
 import DestinationEmojis from '../components/DestinationEmojis.jsx'
 import AuroraStatus from '../components/AuroraStatus.jsx'
 import PhotoGallery from '../components/PhotoGallery.jsx'
@@ -49,6 +53,24 @@ function CityDetail() {
   const { data: weather, loading: weatherLoading } = useWeather()
   const todayRef = useRef(null)
   const today = toISODate(new Date())
+  const game = useGame()
+  const isRealVisit = Boolean(stop) && today >= stop.startDate && today <= stop.endDate
+
+  // Se calcula antes de sellar, para saber si hay que animar el "golpe".
+  const [isNewStamp] = useState(() => {
+    if (!stop) return false
+    const existing = getGame().stamps[stop.city]
+    return !existing || (isRealVisit && !existing.real)
+  })
+
+  useEffect(() => {
+    if (!stop || !stampPassport(stop.city, isRealVisit)) return
+    showToast({
+      icon: isRealVisit ? '✨' : '🛂',
+      title: isRealVisit ? `¡Sello dorado de ${stop.city}!` : `Nuevo sello: ${stop.city}`,
+      text: 'Lo guardaste en tu pasaporte',
+    })
+  }, [stop, isRealVisit])
 
   // Durante el viaje, abrir la ciudad actual lleva directo al plan de hoy.
   useEffect(() => {
@@ -115,7 +137,18 @@ function CityDetail() {
     <div className="container stack city-detail">
       <BackLink to="/">Itinerario</BackLink>
 
-      <header className="card city-detail__hero">
+      <header className={`card city-detail__hero${game.stamps[stop.city] ? ' city-detail__hero--stamped' : ''}`}>
+        {game.stamps[stop.city] && (
+          <div className="city-detail__stamp" aria-label={`Sellado en tu pasaporte`}>
+            <PassportStamp
+              city={stop.city}
+              flag={stop.flag}
+              date={game.stamps[stop.city].date}
+              real={game.stamps[stop.city].real}
+              slam={isNewStamp}
+            />
+          </div>
+        )}
         <div className="city-detail__title-row">
           <button
             type="button"
@@ -183,6 +216,8 @@ function CityDetail() {
       </header>
 
       {stop.slug === 'rovaniemi' && <AuroraStatus />}
+
+      <SurpriseCard city={stop.city} />
 
       <section className="city-detail__days">
         {days.map((day, dayIndex) => {

@@ -1,8 +1,25 @@
 /* --- Hero --- */
 .city-detail__hero {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
+}
+
+/* el sello del pasaporte queda "estampado" en la esquina de la tarjeta */
+.city-detail__stamp {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  opacity: 0.85;
+  scale: 0.66;
+  transform-origin: top right;
+  pointer-events: none;
+}
+
+/* deja lugar al sello para que no tape el nombre ni las fechas */
+.city-detail__hero--stamped .city-detail__title-row {
+  padding-right: 68px;
 }
 
 .city-detail__title-row {

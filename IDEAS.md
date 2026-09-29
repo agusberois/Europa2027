@@ -106,6 +106,16 @@ Considerar bien el tema privacidad antes de avanzar.
 Km totales del itinerario, calculado desde `coordinates.js`.
 **Notas:** Implementado con haversine entre paradas consecutivas (`getTripDistanceKm` en `utils/trip.js`), en línea recta y sin contar escalas, así que es un piso (~29.000 km). Se muestra como stat en el Dashboard junto con el % de una vuelta al mundo.
 
+### ✅ Álbum de figuritas, pasaporte y logros
+Que cada visita a la app traiga algo nuevo.
+**Notas:** Motor en `src/game/` (progreso en localStorage, logros que se evalúan solos tras cada cambio, toasts). 42 figuritas (comunes, raras y legendarias) que aparecen asomando por los bordes de cualquier página; pasaporte con un sello por ciudad (dorado si se abre estando ahí); 18 logros. Todo se ve en `/album`.
+
+### ✅ Tarjeta sorpresa
+**Notas:** En el inicio y en cada destino, sorteada en cada visita (y con botón "Otra"): trivia de la ciudad, rascá y ganá, ruleta de comida típica, palabra del día con voz y galleta de la fortuna. Contenido en `data/surprises.js`.
+
+### ✅ Copito y globo de nieve
+**Notas:** Copito, un pingüino que a veces cruza la pantalla disfrazado según la ciudad (se frena a hablar si lo tocás). Tocar la guirnalda de luces, o agitar el celu, desata una tormenta de nieve.
+
 ### 💡 Bucket list vs. completado
 Marcar actividades "imprescindibles" y trackear cuántas se cumplieron.
 **Notas:**

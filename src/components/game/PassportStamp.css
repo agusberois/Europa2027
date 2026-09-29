@@ -1,0 +1,58 @@
+.stamp {
+  --stamp-color: var(--color-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 112px;
+  height: 112px;
+  border: 3px double var(--stamp-color);
+  border-radius: 50%;
+  color: var(--stamp-color);
+  text-transform: uppercase;
+  transform: rotate(var(--tilt));
+  /* textura de tinta gastada */
+  mask-image: radial-gradient(circle at 30% 40%, #000 55%, rgba(0, 0, 0, 0.75) 100%);
+}
+
+.stamp--real {
+  --stamp-color: #c99a1e;
+  box-shadow: 0 0 14px rgba(242, 201, 76, 0.45);
+}
+
+.stamp__label {
+  font-size: 0.5rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.stamp__flag {
+  font-size: 1.5rem;
+  line-height: 1.1;
+}
+
+.stamp__city {
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.stamp__date {
+  font-size: 0.625rem;
+  font-weight: 700;
+}
+
+.stamp--slam {
+  animation: stamp-slam 0.6s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+
+@keyframes stamp-slam {
+  from {
+    opacity: 0;
+    transform: rotate(calc(var(--tilt) - 25deg)) scale(2.4);
+  }
+  60% {
+    opacity: 1;
+  }
+}

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { phraseBooks } from '../data/phrases'
+import { bump } from '../game/store'
 import './PhraseBook.css'
 
 const canSpeak = typeof window !== 'undefined' && 'speechSynthesis' in window
@@ -19,6 +20,7 @@ function PhraseBook() {
 
   function handleSpeak(item) {
     speak(item.local, active.speechLang)
+    bump('phrasesHeard')
     setSpeakingKey(item.es)
     setTimeout(() => setSpeakingKey((key) => (key === item.es ? null : key)), 1200)
   }

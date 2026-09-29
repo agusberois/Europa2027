@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { getCityEmojis } from '../data/cityEmojis'
 import { confetti } from '../utils/confetti'
+import { bump } from '../game/store'
 import './DestinationEmojis.css'
 
 function DestinationEmojis({ city }) {
@@ -16,6 +17,7 @@ function DestinationEmojis({ city }) {
     confetti(event.currentTarget, { pieces: [items[index].emoji], count: 10, spread: 90 })
     setActive(index)
     setTapCount((count) => count + 1)
+    bump('emojiTaps')
   }
 
   return (

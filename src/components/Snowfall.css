@@ -17,6 +17,12 @@
   will-change: transform;
 }
 
+.snowfall__flake--storm {
+  color: var(--color-primary);
+  animation-iteration-count: 1;
+  animation-fill-mode: backwards;
+}
+
 @keyframes snowfall-fall {
   from {
     transform: translateY(-10vh) translateX(0);

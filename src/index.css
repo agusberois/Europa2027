@@ -223,6 +223,8 @@ ol {
 }
 
 .page {
+  /* las figuritas asoman desde el borde: que no generen scroll horizontal */
+  overflow-x: clip;
   animation: rise-in 0.35s var(--ease-out) both;
 }
 
